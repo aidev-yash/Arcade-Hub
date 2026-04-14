@@ -1,0 +1,146 @@
+Fix and redesign the Bingo game with correct Indian school-style logic and turn-based number calling.
+
+---
+
+GAME TYPE:
+Player vs AI (Turn-based)
+
+---
+
+BOARD SETUP:
+
+* Create TWO separate 5x5 boards:
+
+  1. Player Board (visible)
+  2. AI Board (hidden during gameplay)
+
+* Each board:
+
+  * Contains numbers from 1 to 25
+  * All numbers must be unique
+  * Random arrangement
+  * Player must NOT see AI board until game ends
+
+---
+
+TURN-BASED GAMEPLAY:
+
+* Maintain a shared list of numbers from 1 to 25
+* Each number can be used only once
+
+---
+
+PLAYER TURN:
+
+* Player selects a number from remaining numbers
+* That number is marked on:
+
+  * Player board (if present)
+  * AI board (if present)
+
+---
+
+AI TURN:
+
+* AI selects a number from remaining numbers
+
+* That number is marked on:
+
+  * Player board
+  * AI board
+
+* Add small delay (300–800ms) before AI move
+
+---
+
+IMPORTANT RULE:
+
+* Same number affects BOTH boards
+* This simulates real gameplay where both players cut the same called number
+
+---
+
+LINE COMPLETION RULES:
+
+A line is completed when all 5 cells are marked in:
+
+* Rows (5)
+* Columns (5)
+* Diagonals (2)
+
+Total possible lines = 12
+
+---
+
+BINGO PROGRESSION:
+
+* 1 line → B
+
+* 2 lines → I
+
+* 3 lines → N
+
+* 4 lines → G
+
+* 5 lines → O
+
+* First to complete 5 lines wins
+
+---
+
+END GAME:
+
+* When game ends:
+
+  * Reveal AI board
+  * Show both boards side-by-side
+  * Highlight completed lines
+
+---
+
+FUNCTION REQUIREMENTS:
+
+* generateBoard()
+* getAvailableNumbers()
+* playerMove(number)
+* aiMove()
+* markNumber(board, number)
+* checkCompletedLines(board)
+* updateProgress(lines)
+* checkWinner()
+
+---
+
+AI LOGIC:
+
+* Easy: random unused number
+* Medium: prefer numbers that help AI complete lines
+
+---
+
+UI REQUIREMENTS:
+
+* Show player board clearly
+* Hide AI board during game
+* Show called numbers history
+* Disable already used numbers
+* Show B I N G O progress visually
+
+---
+
+RESTRICTIONS:
+
+* No backend
+* No APIs
+* No libraries
+* Pure JavaScript only
+
+---
+
+GOAL:
+
+Accurately recreate the Indian school Bingo experience where both players take turns calling numbers and marking them on their own boards.
+
+---
+
+END OF PROMPT

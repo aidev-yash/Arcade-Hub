@@ -1,0 +1,127 @@
+Optimize the entire game project without removing, weakening, or changing any existing feature.
+
+MAIN GOAL:
+Refactor the full website into a fast, smooth, stable, and well-structured game hub while preserving every current game, UI element, language system, AI behavior, and interaction flow exactly as intended.
+
+STRICT RULE:
+Do not delete, rename, merge away, or simplify any feature in a way that changes gameplay. The final result must feel the same or better, but run cleaner, faster, and more reliably.
+
+PROJECT CONSTRAINTS:
+- No backend
+- No APIs
+- No external libraries unless already used and absolutely necessary
+- Pure HTML, CSS, and JavaScript only
+- Keep the blackboard / nostalgic Indian theme
+- Keep Hindi/English toggle working globally across the full project
+
+OPTIMIZATION TARGETS:
+
+1. CODE STRUCTURE
+- Remove duplicated logic
+- Create reusable utility functions where the same logic appears in multiple games
+- Keep each game module isolated
+- Use a clean shared state pattern for global systems like language, settings, score storage, and navigation
+- Split large functions into smaller readable functions
+- Use clear variable and function names
+
+2. PERFORMANCE
+- Reduce unnecessary DOM re-renders
+- Avoid repeated querySelector calls where cached references can be used
+- Avoid heavy loops inside render paths
+- Use efficient array and object handling
+- Keep AI logic lightweight and fast
+- Keep animations and transitions lightweight
+- Use requestAnimationFrame for any real-time canvas gameplay such as Snake
+- Avoid setInterval where animation-frame logic is better
+- Do not block the main thread with unnecessary computation
+
+3. UI SMOOTHNESS
+- Keep all screen transitions fluid
+- Make button clicks responsive
+- Prevent lag during game switching
+- Keep overlays, popups, and pop-in elements lightweight
+- Maintain a consistent visual rhythm across all games
+- Ensure the theme remains polished and readable on mobile and desktop
+
+4. GLOBAL SYSTEMS
+- Keep the Hindi/English toggle working everywhere in the app
+- Centralize all text translation access through one shared translation system
+- Keep the support/Discord box working
+- Keep navigation between games smooth and bug-free
+- Keep localStorage settings stable for:
+  - language
+  - high scores
+  - preferences
+  - last played game if used
+
+5. GAME LOGIC STABILITY
+Do not break any of these:
+- Cut-Cross / Tic Tac Toe AI
+- Bingo turn-based hidden-board logic
+- TapTap Heart / Mind / Dustbin logic
+- Raja Mantri Chor Sipai role shuffle, dialogue, score, and round system
+- Classic Snake mode
+- AI Battle Snake mode
+- Any current win/lose/tie conditions
+- Any round counters, timers, or delays
+
+6. AI BEHAVIOR
+- Keep AI predictable enough to feel fair but not so predictable that the game becomes solved
+- Preserve existing AI difficulty modes
+- Avoid excessive delay unless it is part of gameplay
+- Make AI decisions efficient and readable in code
+- Prevent AI from leaking hidden information through dialogue, order, or repeated patterns
+
+7. RESPONSIVENESS
+- Keep the interface fast on low-end phones
+- Make all touch targets large enough
+- Avoid layout shifts
+- Prevent overlapping elements
+- Ensure modals and cards do not jump or reflow badly
+- Keep scrolling smooth where applicable
+
+8. ERROR HANDLING
+- Add guard checks for invalid state
+- Prevent double clicks from breaking turn systems
+- Prevent duplicate scoring
+- Prevent null element crashes
+- Handle missing saved data safely
+- Handle game over and restart states cleanly
+
+9. MEMORY / STATE MANAGEMENT
+- Avoid storing large unnecessary objects in memory
+- Store only the data required for active gameplay
+- Clear round-specific temporary state after round end
+- Preserve only long-term data like scores, settings, and unlocked preferences
+- Make sure state resets are controlled and do not affect unrelated systems
+
+10. TESTING & RELIABILITY
+Before finalizing, verify:
+- Language toggle works on every screen
+- Each game starts, plays, ends, and restarts correctly
+- No feature disappears after optimization
+- No duplicated UI events
+- No broken role reveal or board visibility logic
+- No game-specific regression caused by refactoring
+
+11. UI CONSISTENCY
+- Keep the same blackboard-inspired style
+- Keep chalk-like button and panel styling
+- Improve visual alignment and spacing if needed
+- Do not change the overall identity of the project
+- Make the interface feel more premium, not different
+
+12. DELIVERABLE STANDARD
+The final result should be:
+- Faster
+- Cleaner
+- Easier to maintain
+- More stable
+- More responsive
+- Fully compatible with all existing games and systems
+
+IMPORTANT:
+Do not rewrite the project from scratch unless absolutely necessary. Optimize the existing codebase carefully and preserve all current gameplay features and behaviors.
+
+FINAL GOAL:
+A polished, optimized, bug-resistant game hub that feels smooth on both web and mobile, while keeping every current feature intact.

@@ -1,0 +1,150 @@
+Update and optimize the "Raja Mantri Chor Sipai" game with a full round-based scoring system while preserving all existing features and smoothness.
+
+---
+
+GAME TYPE:
+Player vs 3 AI bots
+
+---
+
+TOTAL ROUNDS:
+
+* The game must run for exactly 5 rounds
+* Each round:
+
+  * Shuffle roles (Raja, Mantri, Sipai, Chor)
+  * Players pick chits
+  * Gameplay runs fully
+  * Points are awarded
+
+---
+
+SCORING SYSTEM:
+
+Each round:
+
+* Raja → +1000 points
+* Mantri → +500 points (if correct guess)
+* Sipai → +100 points
+* Chor → +0 points
+
+SPECIAL RULES:
+
+* If Mantri guesses wrong:
+  → Chor gets +500 points
+
+* If Mantri gives wrong/disrespectful reply:
+  → Raja gets angry
+  → Mantri gets 0
+  → Chor gets +500
+
+* If Sipai helps correctly:
+  → Sipai gets +100 bonus
+
+---
+
+POINT STORAGE (VERY IMPORTANT):
+
+* Maintain a persistent scoreboard:
+  playerScore
+  ai1Score
+  ai2Score
+  ai3Score
+
+* DO NOT reset scores between rounds
+
+---
+
+ROUND FLOW:
+
+1. Round starts
+2. Chits shuffled and picked
+3. Reveal Raja & Mantri
+4. Dialogue phase (Raja, Mantri, Sipai, Chor)
+5. Mantri makes guess
+6. Assign points
+7. Show round result
+8. Move to next round
+
+---
+
+END GAME:
+
+* After 5 rounds:
+
+  * Calculate total scores of all players
+  * Highest score = WINNER
+
+* Show:
+
+  * Final scoreboard
+  * Winner announcement
+  * Option to restart game
+
+---
+
+OPTIMIZATION REQUIREMENTS:
+
+1. Performance:
+
+* Keep all AI logic fast
+* Avoid unnecessary re-renders
+* Use efficient loops
+
+2. Smoothness:
+
+* Maintain smooth UI transitions
+* No lag in dialogue or turn system
+* Keep animation lightweight
+
+3. Code Structure:
+
+* Separate:
+
+  * round logic
+  * scoring logic
+  * dialogue system
+* Avoid duplicate code
+
+4. Stability:
+
+* Ensure no score mismatch
+* Prevent double scoring
+* Ensure round count is accurate
+
+---
+
+UI REQUIREMENTS:
+
+* Show:
+
+  * Current round (1/5, 2/5, etc.)
+  * Live scoreboard
+  * Player role
+  * Dialogue box
+
+---
+
+GLOBAL FEATURES:
+
+* Must support Hindi/English toggle (use existing system)
+* Must maintain existing UI theme (blackboard style)
+
+---
+
+RESTRICTIONS:
+
+* No backend
+* No APIs
+* No libraries
+* Pure JavaScript only
+
+---
+
+GOAL:
+
+Create a complete, polished, multi-round Raja Mantri Chor Sipai game with consistent scoring, smooth gameplay, and a final winner based on total points.
+
+---
+
+END OF PROMPT

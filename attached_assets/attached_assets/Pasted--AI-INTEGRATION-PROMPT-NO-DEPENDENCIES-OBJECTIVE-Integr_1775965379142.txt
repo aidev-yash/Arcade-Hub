@@ -1,0 +1,155 @@
+🧠 AI INTEGRATION PROMPT (NO DEPENDENCIES)
+
+OBJECTIVE:
+Integrate AI opponents into all games using pure JavaScript logic only. The AI must run fully in-browser without any external APIs, libraries, or dependencies.
+
+---
+
+🚫 STRICT RULES:
+
+* Do NOT use any external APIs (OpenAI, etc.)
+* Do NOT use any libraries or frameworks
+* Do NOT import any packages
+* Do NOT use backend/server
+* Everything must be written in plain JavaScript
+
+---
+
+🧠 GENERAL AI DESIGN PRINCIPLES:
+
+* AI must simulate human-like behavior using logic and rules
+* Add small delay (300–800ms) before AI moves for realism
+* Avoid perfectly predictable patterns
+* Use randomness where needed
+* Keep code modular (separate AI functions per game)
+
+---
+
+🎮 GAME-WISE AI IMPLEMENTATION:
+
+---
+
+1. CUT-CROSS (TIC TAC TOE AI)
+
+Implement 3 difficulty levels:
+
+EASY MODE:
+
+* AI selects a random empty cell
+
+MEDIUM MODE:
+
+* If AI can win → take winning move
+* If player can win → block move
+* Else → random move
+
+HARD MODE:
+
+* Implement Minimax Algorithm
+* AI should never lose
+* Optimize for performance (avoid unnecessary recursion)
+
+FUNCTION STRUCTURE:
+
+* getAvailableMoves(board)
+* checkWinner(board)
+* minimax(board, isMaximizing)
+* getBestMove(board)
+
+Board format:
+
+* Array of 9 elements: ["X", "", "O", ...]
+
+---
+
+2. BINGO AI
+
+* AI automatically marks numbers when called
+
+* AI tracks its own ticket
+
+* AI checks win conditions:
+
+  * Line completion
+  * Full house
+
+* Add slight delay before marking for realism
+
+---
+
+3. TRUTH & DARE AI (RULE-BASED)
+
+* Create predefined arrays:
+
+truthQuestions = []
+dareTasks = []
+
+* AI selects randomly from arrays
+
+* Avoid repetition using simple tracking
+
+* Simulate personality:
+
+  * Occasionally add teasing lines
+  * Random phrases like:
+
+    * "Sach bol 😏"
+    * "Darr gaya kya?"
+
+---
+
+4. FIREBOX
+
+* No AI required
+
+---
+
+🧠 HUMAN-LIKE BEHAVIOR SIMULATION:
+
+* Add thinking delay:
+  setTimeout(() => { AI_MOVE }, random(300, 800))
+
+* Add randomness:
+
+  * Shuffle moves
+  * Random choice when multiple best moves exist
+
+---
+
+📁 CODE STRUCTURE:
+
+/games
+tictactoe.js
+- AI logic inside this file
+
+bingo.js
+- AI marking logic
+
+truthdare.js
+- Question generator
+
+---
+
+⚙️ PERFORMANCE RULES:
+
+* Keep AI fast (<100ms computation)
+* Avoid heavy recursion except minimax
+* Optimize minimax by:
+
+  * Stopping early when win/loss found
+
+---
+
+🎯 FINAL GOAL:
+
+AI should feel:
+
+* Smart but not robotic
+* Slightly unpredictable
+* Fun and engaging
+
+All AI must run entirely in-browser with zero dependencies.
+
+---
+
+END OF PROMPT

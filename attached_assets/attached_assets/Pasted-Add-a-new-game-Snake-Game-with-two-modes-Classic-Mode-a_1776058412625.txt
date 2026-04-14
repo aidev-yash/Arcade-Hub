@@ -1,0 +1,207 @@
+Add a new game: "Snake Game" with two modes — Classic Mode and AI Battle Mode — fully optimized and integrated into the existing system.
+
+---
+
+GAME TYPE:
+Single-player arcade + AI battle game
+
+---
+
+RENDERING SYSTEM (IMPORTANT):
+
+* Use HTML5 Canvas
+* Do NOT use DOM-based grid
+* Use requestAnimationFrame for smooth animation
+
+---
+
+GAME MODES:
+
+1. CLASSIC MODE:
+
+* Single snake controlled by player
+* Snake moves continuously
+* Eats food → grows in length
+
+CONTROLS:
+
+* Arrow keys (desktop)
+* On-screen buttons (mobile)
+
+COLLISIONS:
+
+* Wall → Game Over
+* Self → Game Over
+
+SCORING:
+
+* Score increases when food is eaten
+* Display:
+
+  * Current score
+
+---
+
+2. AI BATTLE MODE:
+
+GAME TYPE:
+Player Snake vs AI Snake
+
+---
+
+CORE GAMEPLAY:
+
+* Two snakes:
+
+  * Player snake
+  * AI snake
+
+* Both:
+
+  * Move simultaneously
+  * Eat same food
+  * Grow when eating
+
+---
+
+FOOD SYSTEM:
+
+* Only one food at a time
+* Respawns randomly after being eaten
+
+---
+
+COLLISION RULES (CRITICAL):
+
+* Player head hits AI body → PLAYER LOSES
+* AI head hits Player body → AI LOSES
+* Head-to-head collision → DRAW
+* Self collision → that snake loses
+* Wall collision → optional (can end game or wrap)
+
+---
+
+SPEED SYSTEM:
+
+* Start at normal speed
+* Increase speed gradually over time
+* Speed increase must be smooth and equal for both snakes
+
+---
+
+AI LOGIC:
+
+* AI moves toward food
+* Avoids:
+
+  * Walls
+  * Its own body
+* Add randomness:
+
+  * Not perfect AI
+  * Keep it beatable
+
+---
+
+GAME STATES:
+
+* Mode Selection Screen:
+
+  * Classic Mode
+  * AI Battle Mode
+
+* Game Start
+
+* Playing
+
+* Game Over
+
+---
+
+UI REQUIREMENTS:
+
+* Blackboard theme (match existing design)
+* Chalk-style visuals
+
+DISPLAY:
+
+* Mode selection buttons
+
+* Score / High Score (Classic)
+
+* Result (Battle Mode):
+
+  * Win
+  * Lose
+  * Draw
+
+* Distinguish snakes:
+
+  * Player snake → one color
+  * AI snake → different color
+
+---
+
+SMOOTHNESS & PERFORMANCE:
+
+* Use requestAnimationFrame loop
+
+* Optimize:
+
+  * Movement updates
+  * Collision detection
+  * Rendering
+
+* Avoid:
+
+  * Frame drops
+  * Lag when both snakes move
+
+---
+
+INTEGRATION:
+
+* Must support global Hindi/English toggle:
+
+Translations:
+
+* Score → स्कोर
+* High Score → उच्च स्कोर
+* Game Over → खेल समाप्त
+* Start → शुरू करें
+* Win → जीत
+* Lose → हार
+* Draw → बराबरी
+* Mode → मोड
+
+---
+
+FUNCTION STRUCTURE:
+
+* initGame(mode)
+* updateGame()
+* movePlayerSnake()
+* moveAISnake()
+* spawnFood()
+* checkCollisions()
+* increaseSpeed()
+* render()
+
+---
+
+RESTRICTIONS:
+
+* No backend
+* No APIs
+* No libraries
+* Pure JavaScript only
+
+---
+
+GOAL:
+
+Create a smooth, optimized, dual-mode Snake game where players can enjoy classic gameplay or compete against an AI snake in a fast-paced battle experience.
+
+---
+
+END OF PROMPT

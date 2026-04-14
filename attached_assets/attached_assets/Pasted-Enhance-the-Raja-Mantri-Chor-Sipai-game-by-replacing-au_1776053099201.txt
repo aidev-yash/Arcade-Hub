@@ -1,0 +1,152 @@
+Enhance the Raja Mantri Chor Sipai game by replacing automatic AI dialogue with an interactive player-controlled chat system.
+
+---
+
+OBJECTIVE:
+
+Allow the player to actively participate in conversations by selecting message options instead of watching automatic AI chat.
+
+---
+
+CORE FEATURE:
+
+* Replace auto dialogue with a CHOICE-BASED CHAT SYSTEM
+* At key moments, player is given 4 message options
+* Player selects one option to send message
+
+---
+
+ROLE-BASED INTERACTION:
+
+1. IF PLAYER IS RAJA:
+
+* Show 4 command options:
+
+  * "Mantri, chor ko pakdo!"
+  * "Sach sach batao kaun hai chor!"
+  * "Main hukum deta hoon, sach batao!"
+  * "Galti mat karna, dhyaan se socho!"
+
+* Player selects one → message sent
+
+---
+
+2. IF PLAYER IS MANTRI:
+
+* Show 4 reply options:
+
+  * Correct respectful reply:
+
+    * "Ji Maharaj, abhi pata lagata hoon"
+    * "Aapka aadesh sir aankhon par"
+
+  * Neutral reply:
+
+    * "Koshish karta hoon Maharaj"
+
+  * WRONG reply (trigger):
+
+    * Slight disrespect tone
+
+* If wrong reply selected:
+
+  * Raja gets angry
+  * Mantri loses points
+  * Chor gets +500
+
+---
+
+3. IF PLAYER IS SIPAI:
+
+* Show 4 hint options:
+
+  * Indirect clues
+  * Suspicious hints
+
+* Cannot directly reveal Chor
+
+* If hint helps Mantri:
+
+  * Sipai gets +100 bonus
+
+---
+
+4. IF PLAYER IS CHOR:
+
+* Show 4 manipulation options:
+
+  * Blame Sipai
+  * Confuse Mantri
+  * Fake logic
+
+---
+
+AI BEHAVIOR:
+
+* AI players still send messages automatically
+* Player only controls their own role
+
+---
+
+UI REQUIREMENTS:
+
+* Chat box style (like messaging app)
+
+* Show:
+
+  * Sender name
+  * Role icon
+  * Message bubble
+
+* Below chat:
+
+  * Show 4 selectable message buttons
+
+---
+
+GAME FLOW UPDATE:
+
+* At each dialogue step:
+
+  * Pause game
+  * Show message choices
+  * Wait for player input
+
+* Continue after selection
+
+---
+
+SMOOTHNESS:
+
+* No lag when options appear
+* Instant response after selection
+* Keep animations smooth
+
+---
+
+INTEGRATION:
+
+* Must work with:
+
+  * Existing scoring system
+  * Existing AI logic
+  * Existing Hindi/English toggle
+
+---
+
+RESTRICTIONS:
+
+* No typing input system
+* No backend
+* No APIs
+* Pure JavaScript only
+
+---
+
+GOAL:
+
+Transform the game into an interactive roleplay experience where the player feels in control and can influence outcomes through strategic dialogue choices.
+
+---
+
+END OF PROMPT

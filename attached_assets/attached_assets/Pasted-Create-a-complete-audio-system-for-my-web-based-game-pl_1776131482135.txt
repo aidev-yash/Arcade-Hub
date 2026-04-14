@@ -1,0 +1,111 @@
+Create a complete audio system for my web-based game platform using HTML, CSS, and JavaScript.
+
+## 🎯 Goal:
+
+Design an immersive audio experience with an **Old Indian nostalgic + energetic theme**. The audio should enhance user engagement without being distracting.
+
+---
+
+## 🔊 Requirements:
+
+### 1. 🎧 Background Music (Website Lobby)
+
+* Calm, nostalgic Indian vibe (bansuri, light tabla, tanpura feel)
+* Should loop smoothly
+* Low volume (not distracting)
+* Auto-play after user interaction
+
+---
+
+### 2. 🎮 Game Music (During Gameplay)
+
+* Slight tension + focus-based background music
+* Should dynamically feel more intense during important moments (like guessing phase)
+* Loopable and seamless
+
+---
+
+### 3. 🔘 Sound Effects System
+
+Implement separate sound effects for:
+
+* Button click (soft tick / wooden tap)
+* Turn change (whoosh transition)
+* Suspense moment (light tabla hit / "dhum")
+* Correct guess / WIN (temple bell + uplifting tone)
+* Wrong guess / LOSE (soft low “thud” sound)
+
+---
+
+### 4. 🧠 Smart Behavior
+
+* Sounds should not overlap aggressively
+* Add slight delay where needed
+* Prevent spam clicking sound overlap
+* Ensure smooth transitions between sounds
+
+---
+
+### 5. 🎚️ Audio Controls (MUST HAVE)
+
+* Mute / Unmute button
+* Separate controls:
+
+  * Music volume
+  * Sound effects volume
+* Save user preference in localStorage
+
+---
+
+### 6. ⚙️ Implementation Details
+
+* Use JavaScript Audio API
+* Preload important sounds
+* Create a centralized audio manager system:
+
+Example:
+
+* playMusic()
+* stopMusic()
+* playSFX(type)
+
+---
+
+### 7. 📁 File Structure Suggestion
+
+/assets/audio/
+
+* lobby.mp3
+* game.mp3
+* click.mp3
+* win.mp3
+* lose.mp3
+* suspense.mp3
+
+---
+
+### 8. 🚀 Performance Optimization
+
+* Compress audio files
+* Lazy load non-critical sounds
+* Ensure fast loading (important for web performance)
+
+---
+
+### 9. 🎨 Bonus (if possible)
+
+* Add subtle fade-in / fade-out effects for music
+* Smooth transition between lobby music and game music
+
+---
+
+## 🎯 Output Required:
+
+* Clean, well-structured JavaScript code
+* HTML example integration
+* Comments explaining each part
+* Fully working audio system
+
+---
+
+Make sure the system is optimized, user-friendly, and enhances the nostalgic gaming experience without annoying the user.

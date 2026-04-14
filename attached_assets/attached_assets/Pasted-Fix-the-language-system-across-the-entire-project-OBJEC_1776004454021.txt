@@ -1,0 +1,143 @@
+Fix the language system across the entire project.
+
+---
+
+OBJECTIVE:
+
+Implement a GLOBAL Hindi/English toggle that affects the entire website and all games, not just one game.
+
+---
+
+CORE REQUIREMENTS:
+
+1. Add a LANGUAGE TOGGLE BUTTON on the main webpage:
+
+   * Button text: "EN / हिंदी"
+   * Position: Top-right corner of the screen
+   * It should be visible on all screens (home + all games)
+
+---
+
+2. GLOBAL LANGUAGE STATE:
+
+* Create a global variable:
+  let currentLanguage = "EN"; // or "HI"
+
+* Store user preference using localStorage:
+  localStorage.setItem("lang", "EN" or "HI")
+
+* On page load:
+
+  * Load saved language from localStorage
+
+---
+
+3. TRANSLATION SYSTEM:
+
+Create a central translation object:
+
+const translations = {
+EN: {
+startGame: "Start Game",
+heart: "Heart",
+mind: "Mind",
+dustbin: "Dustbin",
+bingo: "BINGO",
+yourTurn: "Your Turn",
+aiTurn: "AI Turn",
+win: "You Win!",
+lose: "AI Wins!"
+},
+HI: {
+startGame: "खेल शुरू करें",
+heart: "दिल",
+mind: "दिमाग",
+dustbin: "कूड़ेदान",
+bingo: "बिंगो",
+yourTurn: "आपकी बारी",
+aiTurn: "AI की बारी",
+win: "आप जीत गए!",
+lose: "AI जीत गया!"
+}
+};
+
+---
+
+4. APPLY LANGUAGE EVERYWHERE:
+
+* Replace all hardcoded text with:
+  translations[currentLanguage].key
+
+* Apply this in:
+
+  * Homepage
+  * Tic Tac Toe
+  * Bingo
+  * TapTap (Heart-Mind-Dustbin)
+  * Firebox (TapTap reaction game)
+  * Buttons
+  * Alerts
+  * AI messages
+
+---
+
+5. UPDATE FUNCTION:
+
+Create a function:
+
+function updateLanguage() {
+// Update all text elements dynamically
+}
+
+Call this:
+
+* On page load
+* When user toggles language
+
+---
+
+6. BUTTON BEHAVIOR:
+
+When user clicks toggle:
+
+* Switch language:
+  EN → HI
+  HI → EN
+
+* Save to localStorage
+
+* Call updateLanguage()
+
+---
+
+7. UI REQUIREMENTS:
+
+* Button should look like chalk style (match theme)
+* Smooth transition when language changes
+* No page reload required
+
+---
+
+8. IMPORTANT:
+
+* Hindi must work in ALL games (not just one)
+* No duplicate code per game
+* Use centralized system
+
+---
+
+RESTRICTIONS:
+
+* No libraries
+* No APIs
+* Pure JavaScript only
+
+---
+
+GOAL:
+
+Create a clean, centralized multilingual system so the entire game experience switches between English and Hindi seamlessly.
+
+---
+
+END OF PROMPT

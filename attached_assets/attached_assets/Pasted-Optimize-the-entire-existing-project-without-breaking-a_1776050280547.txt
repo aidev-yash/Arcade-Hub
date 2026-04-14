@@ -1,0 +1,74 @@
+Optimize the entire existing project without breaking any current feature.
+
+PROJECT GOAL:
+Refactor and optimize the full game website so that it runs smoother, loads faster, uses cleaner code structure, and keeps every existing feature working exactly as intended.
+
+STRICT RULE:
+Do not remove, rename, or simplify any existing gameplay feature unless it is necessary for performance or bug fixing. The final result must preserve all current functionality.
+
+WHAT TO OPTIMIZE:
+1. Code Structure
+- Clean up duplicated code
+- Separate reusable logic into functions
+- Keep game logic modular
+- Use one central state management approach where possible
+
+2. Performance
+- Reduce unnecessary DOM updates
+- Avoid repeated heavy calculations
+- Cache repeated lookups
+- Make animations lightweight
+- Keep AI logic efficient and responsive
+
+3. Smoothness
+- Ensure transitions feel fluid
+- Avoid UI lag during game actions
+- Keep button clicks, board updates, and language switching responsive
+- Add small delays only where they improve user experience, not where they slow the game
+
+4. Global Systems
+- Keep the Hindi/English toggle working across the entire website
+- Keep all games connected to the same global language system
+- Keep AI behavior stable and consistent
+- Keep localStorage working properly for saved settings
+
+5. Game Logic Stability
+- Do not break:
+  - Cut-Cross / Tic Tac Toe AI
+  - Bingo turn system
+  - TapTap heart/mind/dustbin logic
+  - Global language toggle
+  - Home screen navigation
+- Verify all win conditions, turn handling, and number/board generation
+
+6. UI Consistency
+- Maintain the blackboard / nostalgic Indian school theme
+- Keep all buttons, labels, and overlays visually consistent
+- Make the interface cleaner without changing the identity of the game
+
+7. Responsive Design
+- Make sure the full project works smoothly on mobile and desktop
+- Keep buttons large enough for touch
+- Prevent layout shifts or overflow issues
+
+8. Error Handling
+- Add safe checks to prevent crashes
+- Handle invalid states gracefully
+- Prevent duplicate clicks, repeated turns, and broken board states
+
+9. Code Quality
+- Use clear variable names
+- Remove dead code
+- Avoid unnecessary complexity
+- Keep the project easy to maintain and extend later
+
+IMPORTANT LIMITATIONS:
+- No backend
+- No libraries
+- No APIs
+- Pure HTML, CSS, and JavaScript only
+- Do not change the core gameplay ideas
+- Do not reduce the user experience for the sake of optimization
+
+FINAL TARGET:
+Make the project feel polished, stable, and fast while preserving every feature and making the gameplay smooth and reliable.

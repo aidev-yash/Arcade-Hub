@@ -1,0 +1,150 @@
+🎮 GAME NAME: FireBox – Heart, Mind, Dustbin 
+
+🧠 OBJECTIVE:
+Fix and redesign the TapTap game. It must be a decision-based game where the player assigns given Indian family relations into three categories: Heart, Mind, and Dustbin.
+
+---
+
+⚙️ CORE GAMEPLAY:
+
+1. Each round:
+
+* Generate 3 random Indian relations
+* Example:
+  ["Mother", "Father", "Grandfather"]
+
+2. Player must assign:
+
+* One to ❤️ HEART (most loved)
+* One to 🧠 MIND (respect/intelligence)
+* One to 🗑️ DUSTBIN (least priority / funny rejection)
+
+3. Player cannot assign same relation to multiple categories
+
+4. After selection:
+
+* Show result screen
+* Add humorous/desi reactions
+
+---
+
+👨‍👩‍👧 INDIAN RELATIONS LIST:
+
+Use a large pool:
+
+[
+"Mother", "Father",
+"Grandmother", "Grandfather",
+"Nani", "Nana",
+"Chacha", "Chachi",
+"Bua", "Fufa",
+"Mosi", "Mausa",
+"Bhai", "Behen",
+"Tau", "Tai"
+]
+
+Randomly pick 3 unique relations each round.
+
+---
+
+🎭 REACTION SYSTEM (VERY IMPORTANT):
+
+After player chooses:
+
+Generate funny desi responses:
+
+Examples:
+
+* "Maa ko dustbin me daal diya 😳 kya baat hai!"
+* "Dimaag me Papa, dil me Nani ❤️ solid choice!"
+* "Chacha ko seedha dustbin 😂 savage!"
+
+Keep responses:
+
+* Light
+* Funny
+* Non-offensive
+
+---
+
+🎨 UI DESIGN:
+
+* 3 draggable or clickable cards (relations)
+
+* 3 slots:
+
+  * ❤️ HEART
+  * 🧠 MIND
+  * 🗑️ DUSTBIN
+
+* Style:
+
+  * Chalkboard theme (black background)
+  * Chalk-style fonts
+  * Highlight selections
+
+---
+
+🌐 HINDI MODE (IMPORTANT FEATURE):
+
+Add language toggle:
+
+ENGLISH / हिंदी
+
+---
+
+Example Translations:
+
+Heart → दिल ❤️
+Mind → दिमाग 🧠
+Dustbin → कूड़ेदान 🗑️
+
+Mother → माँ
+Father → पापा
+Grandfather → दादा
+
+---
+
+All UI text must switch dynamically when language changes.
+
+---
+
+🧠 LOGIC RULES:
+
+* Ensure no duplicate relations in one round
+* Prevent empty selections
+* Add "Next Round" button
+* Track score (optional)
+
+---
+
+✨ EXTRA FEATURES:
+
+* Add timer mode (optional)
+* Add streak counter
+* Add sound effects (funny reactions)
+
+---
+
+📁 FILE:
+
+/games/taptap.js
+
+---
+
+🚫 RESTRICTIONS:
+
+* No backend
+* No APIs
+* No libraries
+* Pure JavaScript only
+
+---
+
+🎯 GOAL:
+
+Create a fun, emotional, slightly savage Indian social game that feels relatable and shareable, especially for school students.
+
+---
+
+END OF PROMPT

@@ -1,0 +1,173 @@
+🎮 PROJECT TITLE: Desi Nostalgia Game Hub (Black Theme)
+
+🧠 OBJECTIVE:
+Build a browser-based game website (no backend, no multiplayer, no VPS) that contains multiple classic Indian school-time games with a strong nostalgic feel. The entire project must run fully on the client side using HTML, CSS, and JavaScript.
+
+---
+
+⚙️ CORE REQUIREMENTS:
+
+1. PLATFORM:
+
+* Web-based (runs in browser)
+* Fully offline compatible after load
+* No backend, no database, no APIs
+
+2. TECH STACK:
+
+* HTML (structure)
+* CSS (styling)
+* Vanilla JavaScript (logic)
+* Optional: LocalStorage for saving scores/settings
+
+---
+
+🎨 DESIGN & UI (VERY IMPORTANT):
+
+THEME:
+
+* Dark / Blackboard aesthetic
+* Inspired by old Indian classrooms
+
+VISUAL STYLE:
+
+* Background: Matte black / chalkboard texture
+* Fonts: Chalk-style / handwritten feel
+* Colors:
+
+  * White (chalk text)
+  * Yellow (highlight)
+  * Light blue / green (accents)
+* Buttons: Look like chalk-drawn boxes
+* Borders: Rough, hand-drawn style
+
+ATMOSPHERE:
+
+* Slight grain/noise for realism
+* Subtle chalk writing sound effects (optional)
+* Hover effects like "chalk glow"
+
+---
+
+🧩 MAIN STRUCTURE:
+
+1. HOME SCREEN:
+
+* Title: "Desi Game Hub" (chalk style)
+
+* Menu with game options:
+
+  * Tic Tac Toe (Cut-Cross)
+  * Bingo (Tambola)
+  * Truth & Dare
+  * Firebox (reaction game)
+
+* Smooth transitions between screens
+
+---
+
+🎮 GAMES IMPLEMENTATION:
+
+1. TIC TAC TOE (Cut-Cross):
+
+* 2-player (same device)
+* 3x3 grid
+* Turn-based (X / O)
+* Win detection
+* Restart button
+
+---
+
+2. BINGO (Tambola):
+
+* Generate random ticket (1–90 numbers)
+* Auto number caller
+* Player marks numbers manually
+* Simple win condition (line or full house)
+
+---
+
+3. TRUTH & DARE:
+
+* Two buttons: Truth / Dare
+
+* Random question generator
+
+* Categories:
+
+  * Funny
+  * School
+  * Crazy
+
+* Display in styled popup
+
+---
+
+4. FIREBOX (Reaction Game):
+
+* Random timer
+* Player clicks when box lights up
+* Measure reaction time
+* Show result
+
+---
+
+🧠 FUNCTIONAL FEATURES:
+
+* LocalStorage:
+
+  * Save last played game
+  * Store high scores (Firebox)
+
+* Smooth navigation (no page reloads)
+
+---
+
+📁 CODE STRUCTURE:
+
+/project
+index.html
+style.css
+script.js
+
+/games
+tictactoe.js
+bingo.js
+truthdare.js
+firebox.js
+
+---
+
+✨ UX DETAILS:
+
+* Simple, fast, no lag
+* Mobile responsive
+* Large tap-friendly buttons
+* Minimal loading time
+
+---
+
+🚫 RESTRICTIONS:
+
+* NO backend
+* NO multiplayer (online)
+* NO external heavy libraries
+* NO login/signup system
+
+---
+
+🎯 GOAL:
+
+Create a lightweight, nostalgic, fun gaming experience that reminds users of Indian school days, with a polished UI and smooth gameplay.
+
+---
+
+💡 BONUS (if possible):
+
+* Sound toggle (on/off)
+* Dark-to-darker theme switch
+* Fun chalk animations on click
+
+---
+
+END OF PROMPT

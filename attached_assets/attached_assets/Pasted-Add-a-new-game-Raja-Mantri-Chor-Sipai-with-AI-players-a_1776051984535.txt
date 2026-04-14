@@ -1,0 +1,178 @@
+Add a new game: "Raja Mantri Chor Sipai" with AI players and full interaction system.
+
+---
+
+GAME TYPE:
+Single-player vs 3 AI bots
+
+---
+
+CORE MECHANIC:
+
+* 4 roles:
+
+  * Raja (1000 points)
+  * Mantri (500 points)
+  * Sipai (100 points)
+  * Chor (0 points)
+
+* Shuffle roles randomly every round
+
+* Each player (User + 3 AI) picks one chit
+
+---
+
+DIFFICULTY SYSTEM:
+
+* Easy:
+
+  * Bots pick chits slowly (2–3 seconds delay)
+  * Player has enough time to choose
+
+* Medium:
+
+  * Balanced timing
+
+* Hard:
+
+  * Bots pick instantly (within 1–2 seconds)
+  * Player gets last remaining chit
+
+---
+
+ROLE VISIBILITY:
+
+* Reveal:
+
+  * Raja identity
+  * Mantri identity
+
+* Hide:
+
+  * Chor
+  * Sipai
+
+---
+
+GAME FLOW:
+
+1. Chit selection phase
+2. Reveal Raja & Mantri
+3. Raja gives order to Mantri
+4. Mantri must guess Chor
+5. Sipai and Chor send indirect messages
+6. Mantri makes final guess
+7. Points are assigned
+
+---
+
+DIALOGUE SYSTEM (VERY IMPORTANT):
+
+Raja:
+
+* Gives commands like:
+
+  * "Mantri, chor ko pakdo!"
+  * "Sach batao kaun hai chor!"
+
+Mantri:
+
+* Must respond:
+
+  * "Ji Maharaj" (correct response)
+  * Add multiple variations
+
+* Add one WRONG response:
+
+  * Example: disrespectful reply
+  * If triggered:
+
+    * Raja gets angry
+    * Mantri loses points
+    * Chor automatically gets 500 points
+
+---
+
+SIPAI BEHAVIOR:
+
+* Sends hint messages
+
+* Cannot directly reveal identity
+
+* Helps Mantri indirectly
+
+* If Mantri guesses correctly due to Sipai hint:
+
+  * Sipai gets +100 bonus
+
+---
+
+CHOR BEHAVIOR:
+
+* Sends misleading messages
+* Tries to confuse Mantri
+* Can blame Sipai
+
+---
+
+AI MESSAGE SYSTEM:
+
+* Use predefined message arrays:
+
+  * Raja commands
+  * Mantri replies
+  * Sipai hints
+  * Chor manipulation lines
+
+* Randomize messages for variety
+
+---
+
+WIN LOGIC:
+
+* If Mantri guesses correctly:
+
+  * Mantri = +500
+  * Raja = +1000
+
+* If wrong:
+
+  * Chor = +500
+
+* Sipai bonus if helpful
+
+---
+
+UI REQUIREMENTS:
+
+* Show player role clearly
+* Show dialogue/chat box (like conversation)
+* Show role reveal animations
+* Show point updates
+
+---
+
+EXTRA FEATURES:
+
+* Add "thinking delay" for AI (300–1000ms)
+* Add Hindi/English language support (use global system)
+* Add sound effects for Raja anger, success, etc.
+
+---
+
+RESTRICTIONS:
+
+* No backend
+* No APIs
+* No libraries
+* Pure JavaScript only
+
+---
+
+GOAL:
+
+Create a fun, strategic, dialogue-driven Indian game with deception, humor, and roleplay, where AI feels alive and interactive.
+
+---
+
+END OF PROMPT
