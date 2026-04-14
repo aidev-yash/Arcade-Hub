@@ -5,6 +5,9 @@ import path from "path";
 
 const rawPort = process.env.PORT;
 const port = rawPort ? Number(rawPort) : 3000;
+if (Number.isNaN(port) || port <= 0) {
+  throw new Error(`Invalid PORT value: "${rawPort}"`);
+}
 
 const basePath = process.env.BASE_PATH ?? "/";
 
