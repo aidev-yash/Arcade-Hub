@@ -1,5 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/desi-game-hub build",
   "outputDirectory": "desi-game-hub/dist/public",
-  "installCommand": "pnpm install --filter @workspace/desi-game-hub..."
+  "installCommand": "pnpm install --filter @workspace/desi-game-hub...",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
