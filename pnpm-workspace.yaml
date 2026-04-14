@@ -36,11 +36,11 @@ minimumReleaseAgeExclude:
 
 packages:
   - desi-game-hub
-  - artifacts/*
-  - lib/*
-  - lib/integrations/*
-  - scripts
-
+  - api-server
+  - mockup-sandbox
+  - lib/lib/*
+  - scripts/scripts
+  
 catalog:
   '@replit/vite-plugin-cartographer': ^0.5.1
   '@replit/vite-plugin-dev-banner': ^0.1.1
