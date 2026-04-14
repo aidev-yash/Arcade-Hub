@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd desi-game-hub && pnpm install && pnpm build",
+  "outputDirectory": "desi-game-hub/dist/public",
+  "installCommand": "echo 'dependencies installed per-app'"
+}
