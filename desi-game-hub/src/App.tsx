@@ -16,6 +16,7 @@ type Screen = "home" | "tictactoe" | "bingo" | "truthdare" | "heartmind" | "fire
 const GAMES = [
   {
     id: "tictactoe" as const,
+    slug: "cut-cross",
     title: "Cut-Cross",
     subtitle: "Tic Tac Toe",
     icon: "✕○",
@@ -25,6 +26,7 @@ const GAMES = [
   },
   {
     id: "bingo" as const,
+    slug: "bingo",
     title: "Bingo",
     subtitle: "Tambola",
     icon: "🎱",
@@ -34,6 +36,7 @@ const GAMES = [
   },
   {
     id: "truthdare" as const,
+    slug: "truth-there",
     title: "Sach ya Jhooth",
     subtitle: "Truth & Dare",
     icon: "🎭",
@@ -43,6 +46,7 @@ const GAMES = [
   },
   {
     id: "heartmind" as const,
+    slug: "firebox",
     title: "Firebox",
     subtitle: "Heart · Mind · Dustbin",
     icon: "❤️🧠🗑️",
@@ -52,6 +56,7 @@ const GAMES = [
   },
   {
     id: "firebox" as const,
+    slug: "reflex-rush",
     title: "Reflex Rush",
     subtitle: "Reaction Time Test",
     icon: "⚡",
@@ -61,6 +66,7 @@ const GAMES = [
   },
   {
     id: "rmcs" as const,
+    slug: "raja-mantri",
     title: "Raja Mantri",
     subtitle: "Chor Sipai",
     icon: "👑",
@@ -70,6 +76,7 @@ const GAMES = [
   },
   {
     id: "snake" as const,
+    slug: "snake",
     title: "Saanp Wala",
     subtitle: "Snake Game",
     icon: "🐍",
@@ -130,11 +137,13 @@ function HomeScreen({ onSelect }: { onSelect: (s: Screen) => void }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
         {GAMES.map(game => (
-          <button
+          <a
             key={game.id}
+            href={`/games/${game.slug}`}
             className="game-card group text-left"
-            style={{ borderColor: "rgba(255,255,255,0.08)" }}
-            onClick={() => {
+            style={{ borderColor: "rgba(255,255,255,0.08)", textDecoration: "none" }}
+            onClick={e => {
+              e.preventDefault();
               audioManager.playSFX("click");
               localStorage.setItem("dgh_last_game", game.id);
               onSelect(game.id);
@@ -159,7 +168,7 @@ function HomeScreen({ onSelect }: { onSelect: (s: Screen) => void }) {
             <div className={`mt-4 text-sm chalk-hand ${game.accent} opacity-0 group-hover:opacity-100 transition-opacity`}>
               {t.playNow}
             </div>
-          </button>
+          </a>
         ))}
 
         {/* Discord / Community card */}
@@ -232,6 +241,15 @@ function HomeScreen({ onSelect }: { onSelect: (s: Screen) => void }) {
 function AppInner() {
   const [screen, setScreen] = useState<Screen>("home");
   const goHome = () => setScreen("home");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const gameParam = params.get("game");
+    if (gameParam) {
+      const matched = GAMES.find(g => g.id === gameParam || g.slug === gameParam);
+      if (matched) setScreen(matched.id);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen">
