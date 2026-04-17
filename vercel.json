@@ -1,5 +1,15 @@
 {
   "buildCommand": "pnpm --filter @workspace/desi-game-hub build",
   "outputDirectory": "desi-game-hub/dist/public",
-  "installCommand": "pnpm install --filter @workspace/desi-game-hub..."
+  "installCommand": "pnpm install --filter @workspace/desi-game-hub...",
+  "rewrites": [
+    { "source": "/games/raja-mantri", "destination": "/games/raja-mantri.html" },
+    { "source": "/games/bingo",        "destination": "/games/bingo.html" },
+    { "source": "/games/cut-cross",    "destination": "/games/cut-cross.html" },
+    { "source": "/games/truth-there",  "destination": "/games/truth-there.html" },
+    { "source": "/games/firebox",      "destination": "/games/firebox.html" },
+    { "source": "/games/reflex-rush",  "destination": "/games/reflex-rush.html" },
+    { "source": "/games/snake",        "destination": "/games/snake.html" },
+    { "source": "/(.*)",               "destination": "/index.html" }
+  ]
 }
