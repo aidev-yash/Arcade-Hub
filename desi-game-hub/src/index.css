@@ -488,6 +488,11 @@
   transform: scale(0.75);
 }
 
+/* Ensure smooth transition for rank-box show/hide */
+#rank-box {
+  transition: opacity 0.4s ease, transform 0.25s ease;
+}
+
 /* Animate rank-box hide with fade + scale */
 #rank-box.rank-box-hidden {
   opacity: 0 !important;
