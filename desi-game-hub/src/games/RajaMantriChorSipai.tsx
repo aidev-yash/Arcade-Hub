@@ -325,17 +325,22 @@ export default function RajaMantriChorSipai({ onBack }: { onBack: () => void }) 
   const sched = (fn: () => void, ms: number) => { timersRef.current.push(setTimeout(fn, ms)); };
 
   // ── XP reward: award 2000 XP when the player wins the overall RMCS game ──
+  // A ref tracks whether XP was already awarded for the current game session
+  // to prevent double-awarding if the component re-renders during "gameover".
+  const xpAwardedRef = useRef(false);
   useEffect(() => {
-    if (phase === "gameover") {
+    if (phase === "gameover" && !xpAwardedRef.current) {
       const maxScore = Math.max(...totalScores);
       const winnerIdx = totalScores.indexOf(maxScore);
       const isTie = totalScores.filter(s => s === maxScore).length > 1;
-      if (!isTie && winnerIdx === 0) addXP(2000);
+      if (!isTie && winnerIdx === 0) {
+        xpAwardedRef.current = true;
+        addXP(2000);
+      }
     }
-    // Intentionally omit totalScores from deps — we only want to fire once
-    // on the phase transition, at which point totalScores is already final.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase]);
+    // Reset the guard whenever a new game starts (phase goes back to "setup")
+    if (phase === "setup") xpAwardedRef.current = false;
+  }, [phase, totalScores]);
 
   const addChat = (speakerIdx: number, text: string, isSystem = false) => {
     const id = ++chatIdRef.current;

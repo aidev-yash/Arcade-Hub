@@ -17,17 +17,20 @@ export default function XPWidget() {
       setXp(newXp);
       setVisible(true);
     };
+    let dismissTimer: ReturnType<typeof setTimeout> | null = null;
     const onLevelUp = (e: Event) => {
       const { rank } = (e as CustomEvent<{ rank: Rank }>).detail;
       setLevelUpRank(rank);
+      if (dismissTimer) clearTimeout(dismissTimer);
       // Auto-dismiss after 3 s
-      setTimeout(() => setLevelUpRank(null), 3000);
+      dismissTimer = setTimeout(() => setLevelUpRank(null), 3000);
     };
     window.addEventListener("xp-updated", onXpUpdated);
     window.addEventListener("level-up", onLevelUp);
     return () => {
       window.removeEventListener("xp-updated", onXpUpdated);
       window.removeEventListener("level-up", onLevelUp);
+      if (dismissTimer) clearTimeout(dismissTimer);
     };
   }, []);
 
