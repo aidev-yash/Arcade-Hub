@@ -478,7 +478,7 @@
     font-size: 1.4rem;
     cursor: pointer;
     backdrop-filter: blur(8px);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
     user-select: none;
   }
 
@@ -487,8 +487,22 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
-  /* Hide rank-box on mobile when toggled off */
+  /* Hide trophy button (with fade+scale) when rank panel is open */
+  .rank-toggle-btn.rank-btn-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.75);
+  }
+
+  /* Animate rank-box hide with fade + scale */
   #rank-box.rank-box-hidden {
-    display: none;
+    opacity: 0 !important;
+    transform: scale(0.88) !important;
+    pointer-events: none;
+  }
+
+  /* Make rank box look tappable on mobile */
+  #rank-box:not(.rank-box-hidden) {
+    cursor: pointer;
   }
 }
