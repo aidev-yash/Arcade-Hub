@@ -62,7 +62,7 @@ export default function XPWidget() {
         role="button"
         tabIndex={0}
         onClick={() => { setRankBoxOpen(false); }}
-        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setRankBoxOpen(false); }}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setRankBoxOpen(false); } }}
         style={{
           position: "fixed",
           top: "1rem",
