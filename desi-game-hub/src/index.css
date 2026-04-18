@@ -453,3 +453,42 @@
   65%  { transform: translate(-50%, -50%) scale(1.06); }
   100% { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
 }
+
+/* ========== RANK TOGGLE BUTTON (mobile-only floating 🏆) ========== */
+.rank-toggle-btn {
+  display: none; /* hidden on desktop */
+}
+
+@media (max-width: 768px) {
+  /* Show the floating toggle button only on mobile */
+  .rank-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 150;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 240, 150, 0.4);
+    background: rgba(10, 10, 14, 0.9);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 8px rgba(255, 240, 150, 0.12);
+    font-size: 1.4rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+  }
+
+  .rank-toggle-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Hide rank-box on mobile when toggled off */
+  #rank-box.rank-box-hidden {
+    display: none;
+  }
+}
