@@ -64,8 +64,8 @@ export default function XPWidget() {
     <>
       {/* ── Mobile-only 🏆 toggle button (bottom-right) ───────────────────── */}
       <button
-        className="rank-toggle-btn"
-        onClick={() => setRankBoxOpen(o => !o)}
+        className={`rank-toggle-btn${rankBoxOpen ? " rank-btn-hidden" : ""}`}
+        onClick={() => setRankBoxOpen(true)}
         title="Toggle rank"
         aria-label="Toggle rank panel"
       >
@@ -75,6 +75,7 @@ export default function XPWidget() {
       {/* ── XP / Rank badge (top-left) ─────────────────────────────────────── */}
       <div
         id="rank-box"
+        onClick={() => { if (window.innerWidth <= 768) setRankBoxOpen(false); }}
         style={{
           position: "fixed",
           top: "1rem",
