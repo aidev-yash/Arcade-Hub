@@ -86,6 +86,8 @@ export default function SnakeGame({ onBack }: { onBack: () => void }) {
   const t = lang === "HI" ? UI.HI : UI.EN;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Offscreen canvas for the static dot grid — rendered once, reused every frame
+  const gridCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [phase, setPhase] = useState<Phase>("menu");
   const [score, setScore] = useState(0);
   const [aiScore, setAiScore] = useState(0);
@@ -272,14 +274,9 @@ export default function SnakeGame({ onBack }: { onBack: () => void }) {
     ctx.fillStyle = "#0f0f0f";
     ctx.fillRect(0, 0, W, H);
 
-    // Subtle dot grid
-    ctx.fillStyle = "rgba(255,255,255,0.04)";
-    for (let x = 0; x < COLS; x++) {
-      for (let y = 0; y < ROWS; y++) {
-        ctx.beginPath();
-        ctx.arc(x * CELL + CELL / 2, y * CELL + CELL / 2, 0.7, 0, Math.PI * 2);
-        ctx.fill();
-      }
+    // Subtle dot grid — drawn from pre-rendered offscreen canvas (zero arc calls)
+    if (gridCanvasRef.current) {
+      ctx.drawImage(gridCanvasRef.current, 0, 0);
     }
 
     // Food — glowing circle with a tiny stem
@@ -309,6 +306,26 @@ export default function SnakeGame({ onBack }: { onBack: () => void }) {
       drawSnake(ctx, s.aiSnake, s.aiDir,
         "#f87171", "rgba(248,113,113", "rgba(220,80,80", "#f87171");
     }
+  }, []);
+
+  // ── Pre-render static dot grid to an offscreen canvas ────────────────────────
+  // This avoids re-drawing 400 arc paths every animation frame.
+  useEffect(() => {
+    const offscreen = document.createElement("canvas");
+    offscreen.width = W;
+    offscreen.height = H;
+    const ctx = offscreen.getContext("2d");
+    if (ctx) {
+      ctx.fillStyle = "rgba(255,255,255,0.04)";
+      for (let x = 0; x < COLS; x++) {
+        for (let y = 0; y < ROWS; y++) {
+          ctx.beginPath();
+          ctx.arc(x * CELL + CELL / 2, y * CELL + CELL / 2, 0.7, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+    gridCanvasRef.current = offscreen;
   }, []);
 
   // ── Start game ────────────────────────────────────────────────────────────────
