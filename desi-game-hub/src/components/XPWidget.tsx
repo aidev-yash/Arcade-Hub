@@ -74,7 +74,10 @@ export default function XPWidget() {
       {/* ── XP / Rank badge (top-left) ─────────────────────────────────────── */}
       <div
         id="rank-box"
+        role="button"
+        tabIndex={0}
         onClick={() => { if (isMobile()) setRankBoxOpen(false); }}
+        onKeyDown={(e) => { if (isMobile() && (e.key === "Enter" || e.key === " ")) setRankBoxOpen(false); }}
         style={{
           position: "fixed",
           top: "1rem",
