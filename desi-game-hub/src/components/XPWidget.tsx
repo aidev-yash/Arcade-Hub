@@ -48,36 +48,29 @@ export default function XPWidget() {
       {/* ── 🏆 toggle button (bottom-right, all devices) ─────────────────── */}
       <button
         id="trophy-btn"
-        className={`rank-toggle-btn${rankBoxOpen ? " rank-btn-hidden" : ""}`}
-        onClick={() => setRankBoxOpen(true)}
+        className="rank-toggle-btn"
+        onClick={() => setRankBoxOpen(prev => !prev)}
         title="Toggle rank"
         aria-label="Toggle rank panel"
       >
         🏆
       </button>
 
-      {/* ── XP / Rank badge (top-left) ─────────────────────────────────────── */}
+      {/* ── XP / Rank slide-in panel (right side) ─────────────────────────── */}
       <div
         id="rank-box"
-        role="button"
+        role="dialog"
         tabIndex={rankBoxOpen ? 0 : -1}
         aria-hidden={!rankBoxOpen}
+        aria-label="Rank panel"
         onClick={() => { setRankBoxOpen(false); }}
-        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setRankBoxOpen(false); } }}
+        onKeyDown={(e) => { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") { e.preventDefault(); setRankBoxOpen(false); } }}
         style={{
-          position: "fixed",
-          top: "1rem",
-          left: "1rem",
-          zIndex: 100,
-          background: "rgba(10,10,14,0.88)",
+          background: "rgba(10,10,14,0.95)",
           border: "1.5px solid rgba(255,240,150,0.22)",
-          borderRadius: 10,
-          padding: "0.4rem 0.65rem",
+          padding: "1.25rem 1rem",
           backdropFilter: "blur(8px)",
-          minWidth: 120,
-          opacity: 1,
-          transition: "opacity 0.4s ease, transform 0.25s ease",
-          boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
+          boxShadow: "-4px 0 24px rgba(0,0,0,0.5)",
         }}
         className={rankBoxOpen ? "rank-box-open" : "rank-box-hidden"}
       >
