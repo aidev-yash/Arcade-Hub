@@ -11,6 +11,10 @@ export default function XPWidget() {
   const [visible, setVisible] = useState(false);
   const [rankBoxOpen, setRankBoxOpen] = useState(false);
 
+  useEffect(() => {
+    console.log("JS Loaded ✅");
+  }, []);
+
   // Listen for XP and level-up events dispatched by xpSystem.ts
   useEffect(() => {
     const onXpUpdated = (e: Event) => {
@@ -48,6 +52,7 @@ export default function XPWidget() {
     <>
       {/* ── 🏆 toggle button (bottom-right, all devices) ─────────────────── */}
       <button
+        id="trophy-btn"
         className={`rank-toggle-btn${rankBoxOpen ? " rank-btn-hidden" : ""}`}
         onClick={() => setRankBoxOpen(true)}
         title="Toggle rank"
@@ -79,7 +84,7 @@ export default function XPWidget() {
           transition: "opacity 0.4s ease, transform 0.25s ease",
           boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
         }}
-        className={rankBoxOpen ? undefined : "rank-box-hidden"}
+        className={rankBoxOpen ? "rank-box-open" : "rank-box-hidden"}
       >
         {/* Label row */}
         <div
