@@ -12,11 +12,6 @@ export default function XPWidget() {
   const [rankBoxOpen, setRankBoxOpen] = useState(false);
 
   useEffect(() => {
-    console.log("JS Loaded ✅");
-  }, []);
-
-  // Listen for XP and level-up events dispatched by xpSystem.ts
-  useEffect(() => {
     const onXpUpdated = (e: Event) => {
       const { xp: newXp } = (e as CustomEvent<{ xp: number; gained: number }>).detail;
       setXp(newXp);

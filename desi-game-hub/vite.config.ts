@@ -44,6 +44,17 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // Split vendor libraries into a separate chunk that can be cached
+    // independently of game logic changes.
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+        },
+      },
+    },
+    // Target modern browsers that support ES modules natively
+    target: "es2017",
   },
   server: {
     port,

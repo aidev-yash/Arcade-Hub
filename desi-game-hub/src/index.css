@@ -206,6 +206,10 @@
   position: relative;
   overflow: hidden;
   text-align: center;
+  /* Promote to its own compositor layer for smooth hover transforms */
+  will-change: transform;
+  /* Limit layout recalculation scope to this element */
+  contain: layout style;
 }
 
 .game-card::after {
@@ -332,6 +336,8 @@
   transition: all 0.15s ease;
   user-select: none;
   border: 2px solid rgba(255,255,255,0.08);
+  /* Promote waiting/active states to own layer to avoid repaints on surrounding content */
+  will-change: box-shadow, background-color;
 }
 
 .firebox.idle {
@@ -474,6 +480,7 @@
   backdrop-filter: blur(8px);
   transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
   user-select: none;
+  will-change: transform, opacity;
 }
 
 .rank-toggle-btn:active {
@@ -528,4 +535,38 @@ cursor: pointer;
 
 #rank-box.rank-box-open {
 display: block !important;
+}
+
+/* ========== REDUCED MOTION ========== */
+/* Respect OS-level "reduce motion" preference — skip non-essential animations
+   for users who need it (accessibility + low-end device performance). */
+@media (prefers-reduced-motion: reduce) {
+  .screen-fade-in {
+    animation: none;
+  }
+  .game-card {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .game-card:hover {
+    transform: none;
+  }
+  .chalk-btn:hover {
+    transform: none;
+  }
+  .chalk-btn:active {
+    transform: none;
+  }
+  .firebox.waiting {
+    animation: none;
+    box-shadow: 0 0 20px rgba(255,80,80,0.25);
+  }
+  .firebox.active {
+    animation: none;
+  }
+  .called-number.latest {
+    animation: none;
+  }
+  @keyframes discord-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+  }
 }

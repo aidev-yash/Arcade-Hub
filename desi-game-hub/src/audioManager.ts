@@ -46,6 +46,7 @@ class AudioManager {
 
   // Music state
   private musicNodes: AudioNode[] = [];
+  private musicNodeStopTimes: number[] = []; // parallel array: scheduled stop time per node
   private musicLoopTimeout: ReturnType<typeof setTimeout> | null = null;
   private musicPlaying = false;
   private musicScheduleTime = 0;
@@ -356,6 +357,7 @@ class AudioManager {
       this.musicGain.gain.linearRampToValueAtTime(0, now + 0.6);
       const nodes = this.musicNodes;
       this.musicNodes = [];
+      this.musicNodeStopTimes = [];
       setTimeout(() => {
         nodes.forEach(n => { try { (n as OscillatorNode).stop?.(); } catch {} });
         // Restore musicGain
@@ -371,6 +373,13 @@ class AudioManager {
     const ctx = this.ctx;
     const out = this.musicGain!;
     const t = this.musicScheduleTime;
+
+    // Drop already-finished nodes from the tracking arrays to prevent unbounded growth.
+    const now = ctx.currentTime;
+    const live = this.musicNodes.filter((_, i) => this.musicNodeStopTimes[i] > now);
+    const liveTimes = this.musicNodeStopTimes.filter((st) => st > now);
+    this.musicNodes = live;
+    this.musicNodeStopTimes = liveTimes;
 
     // === Constants ===
     const BPM = 72;
@@ -417,6 +426,7 @@ class AudioManager {
     start: number,
     dur: number,
   ) {
+    const stopTime = start + dur + 0.05;
     const o = ctx.createOscillator(); o.type = "sine"; o.frequency.value = freq;
     const g = ctx.createGain();
     g.gain.setValueAtTime(0, start);
@@ -424,8 +434,9 @@ class AudioManager {
     g.gain.setValueAtTime(0.055, start + dur - 0.3);
     g.gain.linearRampToValueAtTime(0, start + dur);
     o.connect(g); g.connect(out);
-    o.start(start); o.stop(start + dur + 0.05);
+    o.start(start); o.stop(stopTime);
     this.musicNodes.push(o);
+    this.musicNodeStopTimes.push(stopTime);
   }
 
   private _tablaHit(ctx: AudioContext, out: AudioNode, t: number, gain: number) {
@@ -449,6 +460,7 @@ class AudioManager {
     o.connect(gt); gt.connect(out);
     o.start(t); o.stop(t + 0.22);
     this.musicNodes.push(o);
+    this.musicNodeStopTimes.push(t + 0.22);
   }
 
   private _melodyNote(
@@ -459,6 +471,7 @@ class AudioManager {
     dur: number,
     gain: number,
   ) {
+    const melodyStopTime = start + dur + 0.05;
     const o = ctx.createOscillator(); o.type = "triangle";
     // Slight vibrato
     const lfo = ctx.createOscillator(); lfo.type = "sine"; lfo.frequency.value = 5.5;
@@ -473,9 +486,10 @@ class AudioManager {
 
     o.frequency.value = freq;
     o.connect(g); g.connect(out);
-    o.start(start); o.stop(start + dur + 0.05);
-    lfo.start(start); lfo.stop(start + dur + 0.05);
+    o.start(start); o.stop(melodyStopTime);
+    lfo.start(start); lfo.stop(melodyStopTime);
     this.musicNodes.push(o, lfo);
+    this.musicNodeStopTimes.push(melodyStopTime, melodyStopTime);
   }
 
   // ── Volume controls ──────────────────────────────────────────────────────────

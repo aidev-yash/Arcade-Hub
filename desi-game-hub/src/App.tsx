@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
-import TicTacToe from "@/games/TicTacToe";
-import Bingo from "@/games/Bingo";
-import TruthDare from "@/games/TruthDare";
-import HeartMindDustbin from "@/games/HeartMindDustbin";
-import Firebox from "@/games/Firebox";
-import RajaMantriChorSipai from "@/games/RajaMantriChorSipai";
-import SnakeGame from "@/games/SnakeGame";
+import { useState, useEffect, lazy, Suspense } from "react";
+
+// Lazy-load each game so it is only fetched when first played (reduces initial JS bundle)
+const TicTacToe = lazy(() => import("@/games/TicTacToe"));
+const Bingo = lazy(() => import("@/games/Bingo"));
+const TruthDare = lazy(() => import("@/games/TruthDare"));
+const HeartMindDustbin = lazy(() => import("@/games/HeartMindDustbin"));
+const Firebox = lazy(() => import("@/games/Firebox"));
+const RajaMantriChorSipai = lazy(() => import("@/games/RajaMantriChorSipai"));
+const SnakeGame = lazy(() => import("@/games/SnakeGame"));
 import { LangProvider, useLang } from "@/lang";
 import { T } from "@/translations";
 import AudioControls from "@/AudioControls";
@@ -294,13 +296,16 @@ function AppInner() {
         </div>
       )}
       {screen === "home" && <HomeScreen onSelect={setScreen} />}
-      {screen === "tictactoe" && <TicTacToe onBack={goHome} />}
-      {screen === "bingo" && <Bingo onBack={goHome} />}
-      {screen === "truthdare" && <TruthDare onBack={goHome} />}
-      {screen === "heartmind" && <HeartMindDustbin onBack={goHome} />}
-      {screen === "firebox" && <Firebox onBack={goHome} />}
-      {screen === "rmcs" && <RajaMantriChorSipai onBack={goHome} />}
-      {screen === "snake" && <SnakeGame onBack={goHome} />}
+      {/* Suspense wrapper: lazy-loaded games show a minimal loading state until JS chunk is ready */}
+      <Suspense fallback={null}>
+        {screen === "tictactoe" && <TicTacToe onBack={goHome} />}
+        {screen === "bingo" && <Bingo onBack={goHome} />}
+        {screen === "truthdare" && <TruthDare onBack={goHome} />}
+        {screen === "heartmind" && <HeartMindDustbin onBack={goHome} />}
+        {screen === "firebox" && <Firebox onBack={goHome} />}
+        {screen === "rmcs" && <RajaMantriChorSipai onBack={goHome} />}
+        {screen === "snake" && <SnakeGame onBack={goHome} />}
+      </Suspense>
     </div>
   );
 }
