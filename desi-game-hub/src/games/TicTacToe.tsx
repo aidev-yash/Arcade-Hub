@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useLang } from "@/lang";
 import { T } from "@/translations";
 import { audioManager } from "@/audioManager";
+import { addXP } from "@/xpSystem";
 
 type Player = "X" | "O";
 type Board = (Player | null)[];
@@ -159,6 +160,8 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
       setGameOver(true);
       if (mode === "ai") {
         audioManager.playSFX(w.winner === "X" ? "win" : "lose");
+        // ── XP reward: player wins vs AI ──
+        if (w.winner === "X") addXP(10);
       } else {
         audioManager.playSFX("win");
       }

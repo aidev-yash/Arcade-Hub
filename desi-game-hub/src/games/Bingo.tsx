@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { useLang } from "@/lang";
 import { T } from "@/translations";
 import { audioManager } from "@/audioManager";
+import { addXP } from "@/xpSystem";
 
 function generateBoard(): number[] {
   const nums = Array.from({ length: 25 }, (_, i) => i + 1);
@@ -149,6 +150,8 @@ export default function Bingo({ onBack }: { onBack: () => void }) {
       setPhase("ended");
       setShowAiBoard(true);
       audioManager.playSFX(w === "player" ? "win" : "lose");
+      // ── XP reward: bingo win ──
+      if (w === "player") addXP(100);
       return;
     }
 
@@ -191,6 +194,8 @@ export default function Bingo({ onBack }: { onBack: () => void }) {
         setPhase("ended");
         setShowAiBoard(true);
         audioManager.playSFX(w2 === "player" ? "win" : "lose");
+        // ── XP reward: bingo win (via AI turn) ──
+        if (w2 === "player") addXP(100);
       } else {
         setIsPlayerTurn(true);
       }

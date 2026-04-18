@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { audioManager } from "@/audioManager";
 import { useLang } from "@/lang";
 import { T } from "@/translations";
+import { addXP } from "@/xpSystem";
 
 type Phase = "idle" | "waiting" | "active" | "early" | "result";
 
@@ -82,6 +83,9 @@ export default function Firebox({ onBack }: { onBack: () => void }) {
       const updated = saveHighScore(elapsed);
       setHighScores(updated);
       audioManager.playSFX(elapsed < 350 ? "win" : "turn");
+      // ── XP reward: tiered by reaction time (lower = faster = more XP) ──
+      const xpGained = elapsed <= 50 ? 500 : elapsed <= 100 ? 200 : 10;
+      addXP(xpGained);
       setPhase("result");
     }
   }, [phase, startGame, clearTimer]);

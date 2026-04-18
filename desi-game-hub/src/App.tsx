@@ -10,6 +10,7 @@ import { LangProvider, useLang } from "@/lang";
 import { T } from "@/translations";
 import AudioControls from "@/AudioControls";
 import { audioManager } from "@/audioManager";
+import XPWidget from "@/components/XPWidget";
 
 type Screen = "home" | "tictactoe" | "bingo" | "truthdare" | "heartmind" | "firebox" | "rmcs" | "snake";
 
@@ -240,7 +241,20 @@ function HomeScreen({ onSelect }: { onSelect: (s: Screen) => void }) {
 
 function AppInner() {
   const [screen, setScreen] = useState<Screen>("home");
+  const [offline, setOffline] = useState(!navigator.onLine);
   const goHome = () => setScreen("home");
+
+  // ── Offline detection ────────────────────────────────────────────────────
+  useEffect(() => {
+    const handleOffline = () => setOffline(true);
+    const handleOnline  = () => setOffline(false);
+    window.addEventListener("offline", handleOffline);
+    window.addEventListener("online",  handleOnline);
+    return () => {
+      window.removeEventListener("offline", handleOffline);
+      window.removeEventListener("online",  handleOnline);
+    };
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -255,6 +269,30 @@ function AppInner() {
     <div className="min-h-screen">
       <LangToggle />
       <AudioControls />
+      {/* ── XP / Rank widget (non-destructive overlay) ── */}
+      <XPWidget />
+      {/* ── Offline mode banner ── */}
+      {offline && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 200,
+            background: "rgba(30,15,0,0.92)",
+            borderBottom: "1px solid rgba(255,160,50,0.5)",
+            textAlign: "center",
+            padding: "0.3rem 1rem",
+            fontFamily: "Patrick Hand, cursive",
+            fontSize: "0.78rem",
+            color: "rgba(255,200,80,0.95)",
+            backdropFilter: "blur(6px)",
+          }}
+        >
+          Offline Mode 🔥 — Playing from cache
+        </div>
+      )}
       {screen === "home" && <HomeScreen onSelect={setScreen} />}
       {screen === "tictactoe" && <TicTacToe onBack={goHome} />}
       {screen === "bingo" && <Bingo onBack={goHome} />}

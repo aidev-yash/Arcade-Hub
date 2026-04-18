@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useLang } from "@/lang";
 import { audioManager } from "@/audioManager";
+import { addXP } from "@/xpSystem";
 
 type Role = "raja" | "mantri" | "sipai" | "chor";
 type Difficulty = "easy" | "medium" | "hard";
@@ -322,6 +323,19 @@ export default function RajaMantriChorSipai({ onBack }: { onBack: () => void }) 
   const clearTimers = () => { timersRef.current.forEach(clearTimeout); timersRef.current = []; };
   useEffect(() => () => clearTimers(), []);
   const sched = (fn: () => void, ms: number) => { timersRef.current.push(setTimeout(fn, ms)); };
+
+  // ── XP reward: award 2000 XP when the player wins the overall RMCS game ──
+  useEffect(() => {
+    if (phase === "gameover") {
+      const maxScore = Math.max(...totalScores);
+      const winnerIdx = totalScores.indexOf(maxScore);
+      const isTie = totalScores.filter(s => s === maxScore).length > 1;
+      if (!isTie && winnerIdx === 0) addXP(2000);
+    }
+    // Intentionally omit totalScores from deps — we only want to fire once
+    // on the phase transition, at which point totalScores is already final.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   const addChat = (speakerIdx: number, text: string, isSystem = false) => {
     const id = ++chatIdRef.current;
