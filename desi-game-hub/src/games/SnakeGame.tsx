@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useLang } from "@/lang";
 import { audioManager } from "@/audioManager";
+import { addXP } from "@/xpSystem";
 
 const COLS = 20, ROWS = 20, CELL = 15;
 const W = COLS * CELL, H = ROWS * CELL;
@@ -126,6 +127,8 @@ export default function SnakeGame({ onBack }: { onBack: () => void }) {
     if (res === "win") audioManager.playSFX("win");
     else if (res === "lose" || res === "over") audioManager.playSFX("lose");
     else audioManager.playSFX("turn");
+    // ── XP reward: snake battle win ──
+    if (res === "win") addXP(3000);
   }, []);
 
   // ── Game tick ─────────────────────────────────────────────────────────────────
