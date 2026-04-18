@@ -489,9 +489,7 @@
   user-select: none;
 }
 
-.rank-toggle-btn:hover,
-.rank-toggle-btn.rank-btn-hidden {
-  /* Promote to own layer only when a transition is about to occur */
+.rank-toggle-btn:hover {
   will-change: transform, opacity;
 }
 
@@ -500,53 +498,57 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Hide trophy button (with fade+scale) when rank panel is open */
-.rank-toggle-btn.rank-btn-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.75);
-}
-
-/* Ensure smooth transition for rank-box show/hide */
+/* ========== RANK SLIDE-IN PANEL ========== */
+/* Panel lives in the DOM at all times; hidden by moving off-screen (right) */
 #rank-box {
-  transition: opacity 0.4s ease, transform 0.25s ease;
-}
-
-/* Animate rank-box hide with fade + scale */
-#rank-box.rank-box-hidden {
-  opacity: 0 !important;
-  transform: scale(0.88) !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: -100% !important;
+  left: auto !important;
+  bottom: auto !important;
+  height: 100vh !important;
+  width: 300px !important;
+  max-width: 90vw;
+  min-width: unset !important;
+  border-radius: 0 !important;
+  overflow-y: auto;
+  transition: right 0.35s ease !important;
+  z-index: 200 !important;
   pointer-events: none;
 }
 
-/* Make rank box look clickable to close */
-#rank-box:not(.rank-box-hidden) {
+/* Slide panel into view */
+#rank-box.rank-box-open {
+  right: 0 !important;
+  pointer-events: auto;
+}
+
+/* When hidden, keep pointer-events off so underlying UI is clickable */
+#rank-box.rank-box-hidden {
+  pointer-events: none;
+}
+
+/* Make panel look clickable to close when open */
+#rank-box.rank-box-open {
   cursor: pointer;
 }
 
-#rank-box {
-display: none !important;
-}
-
+/* ========== TROPHY TOGGLE BUTTON ========== */
 #trophy-btn {
-position: fixed;
-bottom: 20px;
-right: 20px;
-width: 45px;
-height: 45px;
-background: black;
-color: white;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 20px;
-z-index: 999999;
-cursor: pointer;
-}
-
-#rank-box.rank-box-open {
-display: block !important;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 999999;
+  cursor: pointer;
 }
 
 /* ========== REDUCED MOTION ========== */
