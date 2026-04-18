@@ -9,6 +9,7 @@ export default function XPWidget() {
   const [xp, setXp] = useState<number>(getXP);
   const [levelUpRank, setLevelUpRank] = useState<Rank | null>(null);
   const [visible, setVisible] = useState(false);
+  const [rankBoxOpen, setRankBoxOpen] = useState(() => window.innerWidth > 768);
 
   // Listen for XP and level-up events dispatched by xpSystem.ts
   useEffect(() => {
@@ -34,6 +35,22 @@ export default function XPWidget() {
     };
   }, []);
 
+  // Keep rankBoxOpen in sync when the window is resized across the 768px breakpoint
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const onResize = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (window.innerWidth > 768) setRankBoxOpen(true);
+      }, 150);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
+
   // Show widget once XP has been earned at least once
   useEffect(() => {
     if (xp > 0) setVisible(true);
@@ -45,8 +62,19 @@ export default function XPWidget() {
 
   return (
     <>
+      {/* ── Mobile-only 🏆 toggle button (bottom-right) ───────────────────── */}
+      <button
+        className="rank-toggle-btn"
+        onClick={() => setRankBoxOpen(o => !o)}
+        title="Toggle rank"
+        aria-label="Toggle rank panel"
+      >
+        🏆
+      </button>
+
       {/* ── XP / Rank badge (top-left) ─────────────────────────────────────── */}
       <div
+        id="rank-box"
         style={{
           position: "fixed",
           top: "1rem",
@@ -59,9 +87,10 @@ export default function XPWidget() {
           backdropFilter: "blur(8px)",
           minWidth: 120,
           opacity: visible ? 1 : 0.45,
-          transition: "opacity 0.4s ease",
+          transition: "opacity 0.4s ease, transform 0.25s ease",
           boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
         }}
+        className={rankBoxOpen ? undefined : "rank-box-hidden"}
       >
         {/* Label row */}
         <div
