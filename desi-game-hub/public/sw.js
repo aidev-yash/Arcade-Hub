@@ -47,7 +47,9 @@ async function trimCache(cacheName, maxEntries) {
   const cache = await caches.open(cacheName);
   const keys = await cache.keys();
   if (keys.length > maxEntries) {
-    // Delete oldest entries (keys are ordered by insertion time)
+    // Delete the front of the keys list. The Cache API does not guarantee a
+    // specific ordering, but most browsers return keys in insertion order so
+    // this approximates an LRU eviction for typical usage.
     const toDelete = keys.slice(0, keys.length - maxEntries);
     await Promise.all(toDelete.map((key) => cache.delete(key)));
   }

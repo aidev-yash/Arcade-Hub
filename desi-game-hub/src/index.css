@@ -206,10 +206,13 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  /* Promote to its own compositor layer for smooth hover transforms */
-  will-change: transform;
   /* Limit layout recalculation scope to this element */
   contain: layout style;
+}
+
+.game-card:hover {
+  /* Promote to own layer only when a transform is actually about to occur */
+  will-change: transform;
 }
 
 .game-card::after {
@@ -336,8 +339,12 @@
   transition: all 0.15s ease;
   user-select: none;
   border: 2px solid rgba(255,255,255,0.08);
-  /* Promote waiting/active states to own layer to avoid repaints on surrounding content */
-  will-change: box-shadow, background-color;
+}
+
+/* Promote to own layer only when the box shadow animation is actually running */
+.firebox.waiting,
+.firebox.active {
+  will-change: box-shadow;
 }
 
 .firebox.idle {
@@ -480,6 +487,11 @@
   backdrop-filter: blur(8px);
   transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
   user-select: none;
+}
+
+.rank-toggle-btn:hover,
+.rank-toggle-btn.rank-btn-hidden {
+  /* Promote to own layer only when a transition is about to occur */
   will-change: transform, opacity;
 }
 
