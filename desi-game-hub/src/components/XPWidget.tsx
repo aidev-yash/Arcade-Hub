@@ -60,7 +60,8 @@ export default function XPWidget() {
       <div
         id="rank-box"
         role="button"
-        tabIndex={0}
+        tabIndex={rankBoxOpen ? 0 : -1}
+        aria-hidden={!rankBoxOpen}
         onClick={() => { setRankBoxOpen(false); }}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setRankBoxOpen(false); } }}
         style={{
@@ -74,7 +75,7 @@ export default function XPWidget() {
           padding: "0.4rem 0.65rem",
           backdropFilter: "blur(8px)",
           minWidth: 120,
-          opacity: visible ? 1 : 0.45,
+          opacity: 1,
           transition: "opacity 0.4s ease, transform 0.25s ease",
           boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
         }}
