@@ -454,55 +454,48 @@
   100% { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
 }
 
-/* ========== RANK TOGGLE BUTTON (mobile-only floating 🏆) ========== */
+/* ========== RANK TOGGLE BUTTON (floating 🏆, all devices) ========== */
 .rank-toggle-btn {
-  display: none; /* hidden on desktop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 150;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 240, 150, 0.4);
+  background: rgba(10, 10, 14, 0.9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 8px rgba(255, 240, 150, 0.12);
+  font-size: 1.4rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+  user-select: none;
 }
 
-@media (max-width: 768px) {
-  /* Show the floating toggle button only on mobile */
-  .rank-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 1.25rem;
-    right: 1.25rem;
-    z-index: 150;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255, 240, 150, 0.4);
-    background: rgba(10, 10, 14, 0.9);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 8px rgba(255, 240, 150, 0.12);
-    font-size: 1.4rem;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
-    user-select: none;
-  }
+.rank-toggle-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
 
-  .rank-toggle-btn:active {
-    transform: scale(0.9);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  }
+/* Hide trophy button (with fade+scale) when rank panel is open */
+.rank-toggle-btn.rank-btn-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.75);
+}
 
-  /* Hide trophy button (with fade+scale) when rank panel is open */
-  .rank-toggle-btn.rank-btn-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.75);
-  }
+/* Animate rank-box hide with fade + scale */
+#rank-box.rank-box-hidden {
+  opacity: 0 !important;
+  transform: scale(0.88) !important;
+  pointer-events: none;
+}
 
-  /* Animate rank-box hide with fade + scale */
-  #rank-box.rank-box-hidden {
-    opacity: 0 !important;
-    transform: scale(0.88) !important;
-    pointer-events: none;
-  }
-
-  /* Make rank box look tappable on mobile */
-  #rank-box:not(.rank-box-hidden) {
-    cursor: pointer;
-  }
+/* Make rank box look clickable to close */
+#rank-box:not(.rank-box-hidden) {
+  cursor: pointer;
 }

@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import { getXP, getRank, getNextRank, getRankProgress, type Rank } from "@/xpSystem";
 
-/** Mobile breakpoint in px — must match the CSS @media (max-width: 768px) rule. */
-const MOBILE_BREAKPOINT = 768;
-
-const isMobile = () => window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
-
 /** Small fixed widget (top-left) showing XP, rank, and progress to the next rank.
  *  A "LEVEL UP" popup is shown for 3 s whenever the player gains a new rank tier.
  *  This component is purely additive — it does not modify any existing UI.
@@ -14,7 +9,7 @@ export default function XPWidget() {
   const [xp, setXp] = useState<number>(getXP);
   const [levelUpRank, setLevelUpRank] = useState<Rank | null>(null);
   const [visible, setVisible] = useState(false);
-  const [rankBoxOpen, setRankBoxOpen] = useState(() => !isMobile());
+  const [rankBoxOpen, setRankBoxOpen] = useState(false);
 
   // Listen for XP and level-up events dispatched by xpSystem.ts
   useEffect(() => {
@@ -40,16 +35,6 @@ export default function XPWidget() {
     };
   }, []);
 
-  // Keep rankBoxOpen in sync when the window is resized across the mobile breakpoint
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
-    const onBreakpointChange = (e: MediaQueryListEvent) => {
-      if (!e.matches) setRankBoxOpen(true);
-    };
-    mq.addEventListener("change", onBreakpointChange);
-    return () => mq.removeEventListener("change", onBreakpointChange);
-  }, []);
-
   // Show widget once XP has been earned at least once
   useEffect(() => {
     if (xp > 0) setVisible(true);
@@ -61,7 +46,7 @@ export default function XPWidget() {
 
   return (
     <>
-      {/* ── Mobile-only 🏆 toggle button (bottom-right) ───────────────────── */}
+      {/* ── 🏆 toggle button (bottom-right, all devices) ─────────────────── */}
       <button
         className={`rank-toggle-btn${rankBoxOpen ? " rank-btn-hidden" : ""}`}
         onClick={() => setRankBoxOpen(true)}
@@ -76,8 +61,8 @@ export default function XPWidget() {
         id="rank-box"
         role="button"
         tabIndex={0}
-        onClick={() => { if (isMobile()) setRankBoxOpen(false); }}
-        onKeyDown={(e) => { if (isMobile() && (e.key === "Enter" || e.key === " ")) setRankBoxOpen(false); }}
+        onClick={() => { setRankBoxOpen(false); }}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setRankBoxOpen(false); }}
         style={{
           position: "fixed",
           top: "1rem",
