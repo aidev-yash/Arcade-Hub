@@ -45,6 +45,8 @@ export async function handlePlanBuyTicket(
   const channelName = `ticket-${planName
     .toLowerCase()
     .replace(/[^a-z0-9]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
     .slice(0, 40)}-${interaction.user.id.slice(-4)}`;
 
   // Check whether a ticket for this user+plan already exists

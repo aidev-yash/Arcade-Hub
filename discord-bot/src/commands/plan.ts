@@ -56,8 +56,9 @@ export async function execute(
       .setTimestamp();
 
     // customId format: plan_buy:<planName>
-    // planName is URL-encoded so it survives Discord's 100-char limit safely.
-    const safeId = `plan_buy:${encodeURIComponent(planName).slice(0, 90)}`;
+    // Slice the raw name first, then encode, so we never cut through an encoded sequence.
+    const safeName = planName.slice(0, 80);
+    const safeId = `plan_buy:${encodeURIComponent(safeName)}`;
 
     const button = new ButtonBuilder()
       .setCustomId(safeId)
