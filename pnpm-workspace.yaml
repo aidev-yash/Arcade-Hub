@@ -1,6 +1,7 @@
 packages:
   - desi-game-hub
   - api-server
+  - discord-bot
   - mockup-sandbox
   - lib/lib/*
   - scripts/scripts

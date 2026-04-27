@@ -1,0 +1,20 @@
+{
+  "name": "discord-bot",
+  "version": "0.1.0",
+  "description": "Arcade-Hub Discord bot — plan management and ticket system",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --import tsx/esm src/index.ts",
+    "deploy": "node --import tsx/esm src/deploy.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@discordjs/rest": "2.6.1",
+    "discord.js": "14.26.3"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "tsx": "catalog:"
+  }
+}
